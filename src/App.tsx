@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import Whiteboard from './components/Whiteboard';
 import Sidebar from './components/Sidebar';
+import Toolbar from './components/Toolbar';
 import './styles/App.css';
 
 const App: React.FC = () => {
@@ -41,10 +42,45 @@ const App: React.FC = () => {
     setHistoryStep(newHistory.length - 1);
   }, [history, historyStep]);
 
+  const handleSave = useCallback(() => {
+    // Implement save functionality
+    console.log('Save');
+  }, []);
+
+  const handleExport = useCallback(() => {
+    // Implement export functionality
+    console.log('Export');
+  }, []);
+
+  const handleNew = useCallback(() => {
+    // Implement new document functionality
+    console.log('New');
+  }, []);
+
+  const handleToggleGrid = useCallback(() => {
+    // Implement grid toggle functionality
+    console.log('Toggle Grid');
+  }, []);
+
+  const handleToggleLayers = useCallback(() => {
+    // Implement layers toggle functionality
+    console.log('Toggle Layers');
+  }, []);
+
   return (
     <div className="app">
       <header className="app-header">
-        <h1>Loomia Whiteboard</h1>
+        <div className="logo">Loomia</div>
+        <Toolbar 
+          onSave={handleSave}
+          onExport={handleExport}
+          onNew={handleNew}
+          onToggleGrid={handleToggleGrid}
+          onToggleLayers={handleToggleLayers}
+        />
+        <div className="user-menu">
+          <button className="user-button">JD</button>
+        </div>
       </header>
       <div className="app-content">
         <Sidebar 

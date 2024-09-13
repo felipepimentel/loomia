@@ -95,8 +95,37 @@ const Whiteboard: React.FC<WhiteboardProps> = ({ activeTool, zoom, shapes, updat
     }
   };
 
+  const gridSize = 20;
+  const stageWidth = window.innerWidth - 60;
+  const stageHeight = window.innerHeight - 60;
+
+  const renderGrid = () => {
+    const lines = [];
+    for (let i = 0; i < stageWidth / gridSize; i++) {
+      lines.push(
+        <Line
+          key={`v${i}`}
+          points={[Math.round(i * gridSize) + 0.5, 0, Math.round(i * gridSize) + 0.5, stageHeight]}
+          stroke="#ddd"
+          strokeWidth={1}
+        />
+      );
+    }
+    for (let j = 0; j < stageHeight / gridSize; j++) {
+      lines.push(
+        <Line
+          key={`h${j}`}
+          points={[0, Math.round(j * gridSize), stageWidth, Math.round(j * gridSize)]}
+          stroke="#ddd"
+          strokeWidth={1}
+        />
+      );
+    }
+    return lines;
+  };
+
   return (
-    <div>
+    <div className="whiteboard">
       <div className="color-picker">
         <input 
           type="color" 
@@ -105,8 +134,8 @@ const Whiteboard: React.FC<WhiteboardProps> = ({ activeTool, zoom, shapes, updat
         />
       </div>
       <Stage
-        width={window.innerWidth - 60}
-        height={window.innerHeight - 60}
+        width={stageWidth}
+        height={stageHeight}
         onMouseDown={handleMouseDown}
         onMousemove={handleMouseMove}
         onMouseup={handleMouseUp}
@@ -115,6 +144,7 @@ const Whiteboard: React.FC<WhiteboardProps> = ({ activeTool, zoom, shapes, updat
         scaleY={zoom}
       >
         <Layer>
+          {renderGrid()}
           {shapes.map((shape) => {
             const shapeProps = {
               key: shape.id,

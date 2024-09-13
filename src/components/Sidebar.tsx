@@ -33,43 +33,54 @@ const Sidebar: React.FC<SidebarProps> = ({
   onRedo
 }) => {
   const tools = [
-    { name: 'cursor', icon: <MouseOutlined /> },
-    { name: 'pen', icon: <CreateOutlined /> },
-    { name: 'rectangle', icon: <CropSquareOutlined /> },
-    { name: 'circle', icon: <RadioButtonUncheckedOutlined /> },
-    { name: 'text', icon: <TextFieldsOutlined /> },
-    { name: 'image', icon: <ImageOutlined /> },
+    { name: 'cursor', icon: <MouseOutlined />, label: 'Select' },
+    { name: 'pen', icon: <CreateOutlined />, label: 'Draw' },
+    { name: 'rectangle', icon: <CropSquareOutlined />, label: 'Rectangle' },
+    { name: 'circle', icon: <RadioButtonUncheckedOutlined />, label: 'Circle' },
+    { name: 'text', icon: <TextFieldsOutlined />, label: 'Text' },
+    { name: 'image', icon: <ImageOutlined />, label: 'Image' },
   ];
 
   return (
     <div className="sidebar">
-      {tools.map(({ name, icon }) => (
-        <button
-          key={name}
-          className={`tool-button ${activeTool === name ? 'active' : ''}`}
-          onClick={() => setActiveTool(name)}
-        >
-          {icon}
+      <div className="tool-group">
+        {tools.map(({ name, icon, label }) => (
+          <button
+            key={name}
+            className={`tool-button ${activeTool === name ? 'active' : ''}`}
+            onClick={() => setActiveTool(name)}
+          >
+            {icon}
+            <span className="tool-label">{label}</span>
+          </button>
+        ))}
+      </div>
+      <div className="tool-group">
+        <button className="tool-button" onClick={onZoomIn}>
+          <ZoomInOutlined />
+          <span className="tool-label">Zoom In</span>
         </button>
-      ))}
-      <div className="sidebar-divider" />
-      <button className="tool-button" onClick={onZoomIn}>
-        <ZoomInOutlined />
-      </button>
-      <button className="tool-button" onClick={onZoomOut}>
-        <ZoomOutOutlined />
-      </button>
-      <div className="sidebar-divider" />
-      <button className="tool-button" onClick={onClear}>
-        <DeleteOutlined />
-      </button>
-      <div className="sidebar-divider" />
-      <button className="tool-button" onClick={onUndo}>
-        <UndoOutlined />
-      </button>
-      <button className="tool-button" onClick={onRedo}>
-        <RedoOutlined />
-      </button>
+        <button className="tool-button" onClick={onZoomOut}>
+          <ZoomOutOutlined />
+          <span className="tool-label">Zoom Out</span>
+        </button>
+      </div>
+      <div className="tool-group">
+        <button className="tool-button" onClick={onUndo}>
+          <UndoOutlined />
+          <span className="tool-label">Undo</span>
+        </button>
+        <button className="tool-button" onClick={onRedo}>
+          <RedoOutlined />
+          <span className="tool-label">Redo</span>
+        </button>
+      </div>
+      <div className="tool-group">
+        <button className="tool-button" onClick={onClear}>
+          <DeleteOutlined />
+          <span className="tool-label">Clear All</span>
+        </button>
+      </div>
     </div>
   );
 };
