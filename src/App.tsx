@@ -1,31 +1,71 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './pages/Home';
-import About from './pages/About';
-import Header from './components/Header';
-
-const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
-  <div className="min-h-screen flex flex-col">
-    <Header />
-    <main className="flex-grow container mx-auto px-4 py-8">
-      {children}
-    </main>
-    <footer className="bg-gray-100 py-4 text-center">
-      <p>&copy; 2023 My Project. All rights reserved.</p>
-    </footer>
-  </div>
-);
+import React, { useState, useCallback } from 'react';
+import Whiteboard from './components/Whiteboard';
+import Sidebar from './components/Sidebar';
+import './styles/App.css';
 
 const App: React.FC = () => {
+  const [activeTool, setActiveTool] = useState<string>('cursor');
+  const [zoom, setZoom] = useState(1);
+  const [history, setHistory] = useState<any[][]>([[]]);
+  const [historyStep, setHistoryStep] = useState(0);
+
+  const handleClear = useCallback(() => {
+    setHistory([...history, []]);
+    setHistoryStep(history.length);
+  }, [history]);
+
+  const handleUndo = useCallback(() => {
+    if (historyStep > 0) {
+      setHistoryStep(historyStep - 1);
+    }
+  }, [historyStep]);
+
+  const handleRedo = useCallback(() => {
+    if (historyStep < history.length - 1) {
+      setHistoryStep(historyStep + 1);
+    }
+  }, [historyStep, history]);
+
+  const handleZoomIn = useCallback(() => {
+    setZoom(prevZoom => Math.min(prevZoom + 0.1, 3));
+  }, []);
+
+  const handleZoomOut = useCallback(() => {
+    setZoom(prevZoom => Math.max(prevZoom - 0.1, 0.5));
+  }, []);
+
+  const updateHistory = useCallback((newShapes: any[]) => {
+    const newHistory = history.slice(0, historyStep + 1);
+    newHistory.push(newShapes);
+    setHistory(newHistory);
+    setHistoryStep(newHistory.length - 1);
+  }, [history, historyStep]);
+
   return (
-    <Router>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-        </Routes>
-      </Layout>
-    </Router>
+    <div className="app">
+      <header className="app-header">
+        <h1>Loomia Whiteboard</h1>
+      </header>
+      <div className="app-content">
+        <Sidebar 
+          activeTool={activeTool} 
+          setActiveTool={setActiveTool}
+          onClear={handleClear}
+          onZoomIn={handleZoomIn}
+          onZoomOut={handleZoomOut}
+          onUndo={handleUndo}
+          onRedo={handleRedo}
+        />
+        <main className="whiteboard-container">
+          <Whiteboard 
+            activeTool={activeTool} 
+            zoom={zoom} 
+            shapes={history[historyStep]}
+            updateHistory={updateHistory}
+          />
+        </main>
+      </div>
+    </div>
   );
 };
 
