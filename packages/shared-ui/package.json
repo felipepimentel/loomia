@@ -1,0 +1,16 @@
+{
+  "name": "@loomia/shared-ui",
+  "version": "0.1.0",
+  "private": true,
+  "main": "src/index.ts",
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@loomia/shared-utils": "workspace:*",
+    "lucide-react": "^0.268.0",
+    "@radix-ui/react-tabs": "^1.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.1.6"
+  }
+}

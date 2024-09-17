@@ -1,0 +1,9 @@
+{
+  "name": "@loomia/event-bus",
+  "version": "0.1.0",
+  "private": true,
+  "main": "src/EventBus.ts",
+  "devDependencies": {
+    "typescript": "^5.1.6"
+  }
+}

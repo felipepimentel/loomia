@@ -1,0 +1,19 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+      - run: pnpm install
+      - run: pnpm run build
+      # Adicione aqui os passos para o deploy (por exemplo, upload para um servidor ou serviço de hospedagem)

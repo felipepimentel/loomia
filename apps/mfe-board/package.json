@@ -1,0 +1,23 @@
+{
+  "name": "@loomia/mfe-board",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "start": "vite preview --port 5001"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@loomia/shared-ui": "workspace:*",
+    "@loomia/shared-utils": "workspace:*"
+  },
+  "devDependencies": {
+    "typescript": "^5.1.6",
+    "vite": "^4.4.9",
+    "@vitejs/plugin-react": "^4.0.2",
+    "@originjs/vite-plugin-federation": "^1.2.5",
+    "vite-tsconfig-paths": "^4.2.0"
+  }
+}

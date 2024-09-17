@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "jsx": "react-jsx",
+    "strict": true,
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "@loomia/shared-ui/*": ["packages/shared-ui/src/*"],
+      "@loomia/shared-utils/*": ["packages/shared-utils/src/*"],
+      "@loomia/event-bus": ["packages/event-bus/src/EventBus.ts"]
+    },
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["packages", "apps"]
+}
