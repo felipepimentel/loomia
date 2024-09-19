@@ -2,3 +2,71 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Arquivo: src/assets/styles/index.css */
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+  }
+  
+  #root {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  
+  .app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .header, .footer {
+    flex-shrink: 0;
+  }
+  
+  .main-content {
+    flex-grow: 1;
+    display: flex;
+    overflow: hidden;
+  }
+  
+  .sidebar {
+    width: 16rem;
+    border-right: 1px solid #e2e8f0;
+  }
+  
+  .canvas {
+    flex-grow: 1;
+    background-color: #f7fafc;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .right-sidebar {
+    width: 20rem;
+    border-left: 1px solid #e2e8f0;
+  }
+  
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .overflow-hidden {
+    overflow: hidden;
+  }
+  
+  .text-primary {
+    color: #3182ce;
+  }
+  
+  .bg-primary {
+    background-color: #3182ce;
+  }
+  
+  .text-primary-foreground {
+    color: white;
+  }
+  
