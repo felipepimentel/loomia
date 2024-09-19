@@ -1,8 +1,8 @@
-# Loomia Whiteboard
+# Loomia
 
-![Loomia Whiteboard](https://your-image-url-here.com/loomia-whiteboard-logo.png)
+![Loomia](/imagens/loomia_sample_001.png)
 
-**Loomia Whiteboard** is a modern and extensible solution for real-time visual collaboration. Designed to be lightweight, flexible, and customizable, it allows the use of plugins, expanding its functionalities. Loomia Whiteboard is also offline-first, ensuring that your work is not lost even without an internet connection. You can run it directly in a browser or as a desktop application using Electron.
+**Loomia** is a modern and extensible solution for real-time visual collaboration. Designed to be lightweight, flexible, and customizable, it allows the use of plugins, expanding its functionalities. Loomia is also offline-first, ensuring that your work is not lost even without an internet connection. You can run it directly in a browser or as a desktop application using Electron.
 
 ## 🚀 Key Features
 
@@ -36,8 +36,8 @@
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/loomia-whiteboard.git
-   cd loomia-whiteboard
+   git clone https://github.com/felipepimentel/loomia.git
+   cd loomia
    ```
 
 2. Install dependencies:

@@ -12,8 +12,4 @@
     "composite": true, // Add this line
     "noEmit": false    // Ensure this is false
   },
-  "include": [
-    "scripts/**/*",
-    "server/**/*"
-  ]
 }
