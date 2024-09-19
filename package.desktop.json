@@ -1,0 +1,31 @@
+{
+  "name": "loomia-whiteboard-desktop",
+  "version": "1.0.0",
+  "description": "Loomia Whiteboard Desktop",
+  "main": "electron.config.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^15.0.0",
+    "electron-builder": "^22.11.7"
+  },
+  "build": {
+    "appId": "com.loomia.whiteboard",
+    "productName": "Loomia Whiteboard",
+    "directories": {
+      "output": "build"
+    },
+    "files": [
+      "dist/**/*",
+      "electron.config.js"
+    ],
+    "mac": {
+      "target": "dmg"
+    },
+    "win": {
+      "target": "nsis"
+    }
+  }
+}

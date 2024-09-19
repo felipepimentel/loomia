@@ -1,0 +1,22 @@
+{
+  "plugins": [
+    {
+      "collaborationPlugin": {
+        "active": true
+      }
+    },
+    {
+      "connectionPlugin": {
+        "active": true
+      }
+    },
+    {
+      "shapePlugin": {
+        "active": true
+      }
+    }
+  ],
+  "theme": "dark",
+  "language": "en",
+  "showGrid": true
+}
