@@ -3,7 +3,7 @@
 // Aqui você pode configurar um caminho ou API para buscar plugins externos
 // Exemplo: Carregar plugins a partir de um arquivo JSON ou uma URL externa
 
-import { loadCommunityPluginsConfig } from './pluginLoaderUtils';
+import { loadCommunityPluginsConfig } from './plugin-loader-utils';
 
 // Carrega a configuração dos plugins da comunidade de uma fonte externa (pode ser um arquivo, API, etc.)
 const communityPluginConfig = loadCommunityPluginsConfig();

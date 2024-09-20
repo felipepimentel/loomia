@@ -1,4 +1,4 @@
-import { stateManager } from '@/core/stateManager';
+import { stateManager } from '@core/state-manager';
 import { Logger } from '@/core/logger';
 
 export class ShapePlugin {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { loadUserSettings, saveUserSettings } from '@/core/userConfig';
+import { loadUserSettings, saveUserSettings } from '@core/user-config';
 import { Plugin } from '@/types';
 import { Button } from '@/components/ui/button';
 
