@@ -1,4 +1,5 @@
 // src/components/Toolbar.tsx
+import React from 'react';
 
 // This is the Toolbar component with a default export
 const Toolbar: React.FC = () => {

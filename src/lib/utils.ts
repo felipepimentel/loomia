@@ -28,3 +28,14 @@ export function logError(message: string, error?: any) {
 export function logInfo(message: string) {
   console.log(message);
 }
+
+// utils/pathResolver.ts
+export function resolvePluginPath(name: string) {
+  switch (name) {
+    case 'header-plugin':
+      return '../../plugins/header-plugin/index.ts';
+    // Adicione mais casos para outros plugins se necessário
+    default:
+      throw new Error(`Plugin path for ${name} not found.`);
+  }
+}

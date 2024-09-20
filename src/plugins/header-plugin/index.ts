@@ -1,9 +1,9 @@
-import { AbstractPlugin } from '@/core/base-plugin';
-import { PluginMetadata } from '@/core/plugin-metadata';
-import Header from './Header';
+import { AbstractPlugin } from '../../core/base-plugin';
+import { PluginMetadata } from '../../core/plugin-metadata';
+import HeaderComponent from './Header';
 
 export default class HeaderPlugin extends AbstractPlugin {
-  component: typeof Header | null = null;
+  component: typeof HeaderComponent | null = null;
 
   constructor(metadata: PluginMetadata) {
     super(metadata);
@@ -11,7 +11,7 @@ export default class HeaderPlugin extends AbstractPlugin {
 
   async initialize(settings: Record<string, any>): Promise<void> {
     console.log(`Initializing HeaderPlugin with settings:`, settings);
-    this.component = Header;
+    this.component = HeaderComponent;
   }
 
   async destroy(): Promise<void> {

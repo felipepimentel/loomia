@@ -1,7 +1,7 @@
 import { BasePlugin } from './base-plugin';
 import { PluginMetadata } from './plugin-metadata';
 import { loadUserSettings } from '@/lib/user-config';
-import { logError, logInfo } from '@/lib/utils';
+import { logError, logInfo, resolvePluginPath } from '@/lib/utils';
 
 export class PluginManager {
   private plugins: Map<string, BasePlugin> = new Map();
@@ -27,25 +27,24 @@ export class PluginManager {
       logInfo(`Plugin ${name} is already loaded.`);
       return;
     }
-
+  
     try {
-      const pluginPath = name.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
-      // @ts-ignore
-      const { default: PluginClass } = await import(/* @vite-ignore */ `@/plugins/${pluginPath}/index.js`);
-      // @ts-ignore
-      const { default: metadata } = await import(/* @vite-ignore */ `@/plugins/${pluginPath}/metadata.js`);
-      
+      const pluginPath = resolvePluginPath(name);
+      const { default: PluginClass } = await import(/* @vite-ignore */ pluginPath);
+      const { default: metadata } = await import(/* @vite-ignore */ `@/plugins/${name}/metadata.ts`);
+  
       const plugin: BasePlugin = new PluginClass(metadata);
       const mergedSettings = { ...metadata.defaultSettings, ...userSettings };
-
+  
       await plugin.initialize(mergedSettings);
       this.plugins.set(name, plugin);
-
+  
       logInfo(`Plugin ${name} loaded and initialized successfully.`);
     } catch (error) {
       logError(`Failed to load plugin: ${name}`, error);
     }
   }
+  
 
   async unloadPlugin(name: string) {
     const plugin = this.plugins.get(name);

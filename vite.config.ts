@@ -17,10 +17,23 @@ export default defineConfig({
       '@types': path.resolve(__dirname, './src/types')
     },
   },
+  build: {
+    commonjsOptions: {
+      include: [],
+    },
+  },
   optimizeDeps: {
-    include: ['react', 'react-dom'],
-  },
-  esbuild: {
-    jsxInject: `import React from 'react'`,
-  },
+    esbuildOptions: {
+      plugins: [
+        {
+          name: 'load-js-files-as-jsx',
+          setup(build) {
+            build.onLoad({ filter: /src\/.*\.ts$/ }, async (args) => ({
+              loader: 'tsx',
+            }));
+          },
+        },
+      ],
+    },
+  }
 });

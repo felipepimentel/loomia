@@ -1,4 +1,5 @@
 // src/components/RightSidebar.tsx
+import React from 'react';
 import { Shape, Connection } from '@/types'; // Certifique-se de que esses tipos estão corretamente definidos no seu projeto.
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
