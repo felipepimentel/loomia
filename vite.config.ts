@@ -17,4 +17,10 @@ export default defineConfig({
       '@types': path.resolve(__dirname, './src/types')
     },
   },
+  optimizeDeps: {
+    include: ['react', 'react-dom'],
+  },
+  esbuild: {
+    jsxInject: `import React from 'react'`,
+  },
 });

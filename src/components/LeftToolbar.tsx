@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button } from '@/components/ui/button';
 import { MousePointer2, Square, Shapes, StickyNote, Type, ArrowUpRight } from 'lucide-react';
 

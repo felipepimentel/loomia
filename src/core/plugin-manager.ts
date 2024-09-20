@@ -1,6 +1,6 @@
 import { BasePlugin } from './base-plugin';
 import { PluginMetadata } from './plugin-metadata';
-import { loadUserSettings } from '@/lib/userConfig';
+import { loadUserSettings } from '@/lib/user-config';
 import { logError, logInfo } from '@/lib/utils';
 
 export class PluginManager {
@@ -29,9 +29,12 @@ export class PluginManager {
     }
 
     try {
-      const { default: PluginClass } = await import(`@/plugins/${name}`);
-      const { default: metadata } = await import(`@/plugins/${name}/metadata`);
-
+      const pluginPath = name.replace(/-([a-z])/g, (g) => g[1].toUpperCase());
+      // @ts-ignore
+      const { default: PluginClass } = await import(/* @vite-ignore */ `@/plugins/${pluginPath}/index.js`);
+      // @ts-ignore
+      const { default: metadata } = await import(/* @vite-ignore */ `@/plugins/${pluginPath}/metadata.js`);
+      
       const plugin: BasePlugin = new PluginClass(metadata);
       const mergedSettings = { ...metadata.defaultSettings, ...userSettings };
 

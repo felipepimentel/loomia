@@ -1,21 +1,21 @@
 import { AbstractPlugin } from '@/core/base-plugin';
 import { PluginMetadata } from '@/core/plugin-metadata';
-import Canvas from './Canvas';
+import RightSidebar from './RightSidebar';
 
-export default class CanvasPlugin extends AbstractPlugin {
-  component: typeof Canvas | null = null;
+export default class RightSidebarPlugin extends AbstractPlugin {
+  component: typeof RightSidebar | null = null;
 
   constructor(metadata: PluginMetadata) {
     super(metadata);
   }
 
   async initialize(settings: Record<string, any>): Promise<void> {
-    console.log(`Initializing CanvasPlugin with settings:`, settings);
-    this.component = Canvas;
+    console.log(`Initializing RightSidebarPlugin with settings:`, settings);
+    this.component = RightSidebar;
   }
 
   async destroy(): Promise<void> {
-    console.log(`Destroying CanvasPlugin`);
+    console.log(`Destroying RightSidebarPlugin`);
     this.component = null;
   }
 }

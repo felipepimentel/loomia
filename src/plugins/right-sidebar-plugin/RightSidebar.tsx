@@ -1,5 +1,4 @@
-// src/components/RightSidebar.tsx
-import { Shape, Connection } from '@/types'; // Certifique-se de que esses tipos estão corretamente definidos no seu projeto.
+import { Shape, Connection } from '@/types';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -21,8 +20,8 @@ interface RightSidebarProps {
 }
 
 const RightSidebar: React.FC<RightSidebarProps> = ({
-  shapes = [], // Valor padrão para shapes
-  connections = [], // Valor padrão para connections
+  shapes = [],
+  connections = [],
   selectedShapes,
   selectedConnections,
   setSelectedShapes,
@@ -34,35 +33,30 @@ const RightSidebar: React.FC<RightSidebarProps> = ({
   gridEnabled,
   setGridEnabled,
 }) => {
-  // Função auxiliar para alternar visibilidade de um shape
   const toggleShapeVisibility = (shapeId: string) => {
     setShapes((prevShapes) =>
       prevShapes.map((s) => (s.id === shapeId ? { ...s, visible: !s.visible } : s))
     );
   };
 
-  // Função auxiliar para alternar bloqueio de um shape
   const toggleShapeLock = (shapeId: string) => {
     setShapes((prevShapes) =>
       prevShapes.map((s) => (s.id === shapeId ? { ...s, locked: !s.locked } : s))
     );
   };
 
-  // Função auxiliar para remover uma conexão
   const removeConnection = (connectionId: string) => {
     setConnections((prevConnections) => prevConnections.filter((c) => c.id !== connectionId));
   };
 
-  // Função auxiliar para selecionar um shape
   const selectShape = (shapeId: string) => {
     setSelectedShapes([shapeId]);
-    setSelectedConnections([]); // Deselect connections if any
+    setSelectedConnections([]);
   };
 
-  // Função auxiliar para selecionar uma conexão
   const selectConnection = (connectionId: string) => {
     setSelectedConnections([connectionId]);
-    setSelectedShapes([]); // Deselect shapes if any
+    setSelectedShapes([]);
   };
 
   return (

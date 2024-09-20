@@ -20,3 +20,11 @@ export function cn(...inputs: ClassValue[]) {
 export function isElectron() {
   return typeof window !== 'undefined' && window.process && window.process.type === 'renderer';
 }
+
+export function logError(message: string, error?: any) {
+  console.error(message, error);
+}
+
+export function logInfo(message: string) {
+  console.log(message);
+}

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useState, useEffect } from 'react';
 import { loadUserSettings, saveUserSettings } from '@core/user-config';
 import { Plugin } from '@/types';
