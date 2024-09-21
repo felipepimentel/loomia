@@ -7,33 +7,29 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
-      '@components': path.resolve(__dirname, './src/components'),
+      '@main': path.resolve(__dirname, './src/main'),
+      '@renderer': path.resolve(__dirname, './src/renderer'),
       '@core': path.resolve(__dirname, './src/core'),
       '@plugins': path.resolve(__dirname, './src/plugins'),
-      '@assets': path.resolve(__dirname, './src/assets'),
-      '@pages': path.resolve(__dirname, './src/pages'),
-      '@hooks': path.resolve(__dirname, './src/hooks'),
-      '@lib': path.resolve(__dirname, './src/lib'),
-      '@types': path.resolve(__dirname, './src/types')
     },
   },
   build: {
-    commonjsOptions: {
-      include: [],
-    },
+    outDir: 'dist',
+    target: 'esnext',  // Define o target para o ambiente mais moderno
   },
   optimizeDeps: {
     esbuildOptions: {
+      // Permite que o Vite processe arquivos TypeScript corretamente
       plugins: [
         {
-          name: 'load-js-files-as-jsx',
+          name: 'load-ts-files',
           setup(build) {
             build.onLoad({ filter: /src\/.*\.ts$/ }, async (args) => ({
-              loader: 'tsx',
+              loader: 'ts',
             }));
           },
         },
       ],
     },
-  }
+  },
 });
