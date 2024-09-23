@@ -1,0 +1,20 @@
+{
+  "name": "renderer",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/renderer/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/workspace:run-commands",
+      "options": {
+        "command": "vite build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["packages/renderer/**/*.ts"]
+      }
+    }
+  }
+}

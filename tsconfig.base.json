@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "module": "CommonJS",
+    "lib": ["ES6", "DOM"],
+    "jsx": "react-jsx",
+    "moduleResolution": "node",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "@app-desktop/*": ["packages/app-desktop/src/*"],
+      "@commons/*": ["packages/commons/src/*"],
+      "@config/*": ["packages/config/src/*"],
+      "@events/*": ["packages/events/src/*"],
+      "@plugin-manager/*": ["packages/plugin-manager/src/*"],
+      "@renderer/*": ["packages/renderer/src/*"],
+      "@state/*": ["packages/state/src/*"]
+    }
+  },
+  "exclude": ["node_modules", "dist"]
+}

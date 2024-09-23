@@ -1,32 +1,50 @@
 {
   "name": "loomia",
   "version": "1.0.0",
-  "description": "Loomia Whiteboard Project",
-  "type": "module",
-  "main": "packages/main/dist/index.js",
+  "private": true,
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
   "scripts": {
-    "start": "pnpm build && electron .",
-    "build": "pnpm run clean && webpack --config webpack.config.mjs && tsc -p packages/main/tsconfig.json",
-    "dist": "pnpm build && electron-builder",
-    "clean": "rm -rf dist"
+    "build": "nx run-many --target=build --all",
+    "lint": "nx run-many --target=lint --all",
+    "test": "nx run-many --target=test --all",
+    "commit": "cz",
+    "storybook": "start-storybook -p 6006",
+    "start": "nx serve app-desktop"
   },
   "devDependencies": {
-    "@types/electron": "^1.6.10",
-    "@types/node": "^22.5.5",
-    "electron": "^32.1.2",
-    "electron-builder": "^25.0.5",
-    "ts-loader": "^9.5.1",
-    "typescript": "^5.6.2",
-    "vite": "^5.4.7",
-    "webpack": "^5.94.0",
-    "webpack-cli": "^5.1.4",
-    "webpack-node-externals": "^3.0.0",
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "copy-webpack-plugin": "^11.0.0",
-    "style-loader": "^3.3.3",
-    "css-loader": "^6.8.1"
-  }
+    "@nx/jest": "^16.0.0",
+    "@nx/linter": "^16.0.0",
+    "@nx/node": "^16.0.0",
+    "@nx/workspace": "^16.0.0",
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.49.0",
+    "husky": "^9.1.6",
+    "jest": "^29.7.0",
+    "lint-staged": "^15.2.10",
+    "nx": "^16.0.0",
+    "prettier": "^3.3.3",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.6.2"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

@@ -1,0 +1,57 @@
+{
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "npmScope": "loomia",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nx/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
+      }
+    }
+  },
+  "namedInputs": {
+    "default": ["{projectRoot}/**/*"],
+    "production": [
+      "!{projectRoot}/**/*.spec.ts",
+      "!{projectRoot}/tsconfig.spec.json",
+      "!{projectRoot}/jest.config.ts"
+    ]
+  },
+  "targetDefaults": {
+    "build": {
+      "executor": "@nx/workspace:run-commands",
+      "options": {
+        "command": "yarn build"
+      }
+    }
+  },
+  "projects": {
+    "app-desktop": {
+      "tags": []
+    },
+    "plugin-manager": {
+      "tags": []
+    },
+    "renderer": {
+      "tags": []
+    },
+    "commons": {
+      "tags": []
+    },
+    "components": {
+      "tags": []
+    },
+    "config": {
+      "tags": []
+    },
+    "core": {
+      "tags": []
+    },
+    "events": {
+      "tags": []
+    },
+    "state": {
+      "tags": []
+    }
+  }
+}

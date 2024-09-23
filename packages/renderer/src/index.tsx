@@ -1,11 +1,16 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import App from './App';
-import './index.css'; // Certifique-se de que este arquivo existe
+import { StoreProvider } from '@state/store-provider';
+import { BrowserRouter } from 'react-router-dom';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+// Create root using ReactDOM.createRoot for React 18+
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+
+root.render(
+  <StoreProvider>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </StoreProvider>
 );
