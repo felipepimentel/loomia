@@ -44,14 +44,14 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({ color, setColor }) => 
             <Input
               type="text"
               value={color}
-              onChange={(e) => setColor(e.target.value)}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setColor(e.target.value)}
               className="w-full"
             />
           </div>
           <Input
             type="color"
             value={color}
-            onChange={(e) => setColor(e.target.value)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setColor(e.target.value)}
             className="w-10 h-10 p-0 border-none"
           />
         </div>

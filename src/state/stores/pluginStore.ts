@@ -1,17 +1,38 @@
 import { create } from 'zustand';
+import { immer } from 'zustand/middleware/immer';
 
-type PluginState = {
-  plugins: Record<string, any>;
-  registerPlugin: (name: string, data: any) => void;
-  updatePluginData: (name: string, data: any) => void;
+type Plugin = {
+  name: string;
+  version: string;
+  isEnabled: boolean;
+  data: Record<string, any>;
 };
 
-export const usePluginStore = create<PluginState>((set) => ({
-  plugins: {},
-  registerPlugin: (name, data) => set((state) => ({
-    plugins: { ...state.plugins, [name]: data },
-  })),
-  updatePluginData: (name, data) => set((state) => ({
-    plugins: { ...state.plugins, [name]: { ...state.plugins[name], ...data } },
-  })),
-}));
+type PluginState = {
+  plugins: Record<string, Plugin>;
+  registerPlugin: (name: string, plugin: Omit<Plugin, 'name'>) => void;
+  updatePluginData: (name: string, data: Partial<Plugin['data']>) => void;
+  togglePlugin: (name: string) => void;
+};
+
+// Cria o store de plugins usando o middleware immer para facilitar a manipulação do estado
+export const usePluginStore = create<PluginState>()(
+  immer((set) => ({
+    plugins: {},
+    registerPlugin: (name, plugin) => set((state) => {
+      state.plugins[name] = { ...plugin, name };
+    }),
+    updatePluginData: (name, data) => set((state) => {
+      const plugin = state.plugins[name];
+      if (plugin) {
+        plugin.data = { ...plugin.data, ...data };
+      }
+    }),
+    togglePlugin: (name) => set((state) => {
+      const plugin = state.plugins[name];
+      if (plugin) {
+        plugin.isEnabled = !plugin.isEnabled;
+      }
+    }),
+  }))
+);

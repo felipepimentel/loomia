@@ -1,6 +1,6 @@
-import React from 'react'; // Adicionar importação do React
-import { PluginMetadata } from '@/core/types'; // Verifique se o caminho está correto
-import { BasePlugin } from '@/core/base-plugin'; // Verifique se o caminho está correto
+import React from 'react';
+import { PluginMetadata } from '@/core/types';
+import { BasePlugin } from '@/core/base-plugin';
 
 const CanvasComponent: React.FC = () => {
   return <div>Canvas Plugin Component</div>;
