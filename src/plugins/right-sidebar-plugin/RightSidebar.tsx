@@ -1,26 +1,14 @@
 import React from 'react';
-import { Shape, Connection } from '@/core/types';
+import { PluginProps, Shape, Connection } from '@/core/types';
 import { Button } from '@/components/ui/button';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Eye, EyeOff, Lock, Unlock, Trash2, Layers, Settings } from 'lucide-react';
 
-interface RightSidebarProps {
+const RightSidebar: React.FC<PluginProps & {
   shapes?: Shape[];
   connections?: Connection[];
-  selectedShapes: string[];
-  selectedConnections: string[];
-  setSelectedShapes: React.Dispatch<React.SetStateAction<string[]>>;
-  setSelectedConnections: React.Dispatch<React.SetStateAction<string[]>>;
-  setShapes: React.Dispatch<React.SetStateAction<Shape[]>>;
-  setConnections: React.Dispatch<React.SetStateAction<Connection[]>>;
-  zoom: number;
-  setZoom: (zoom: number) => void;
-  gridEnabled: boolean;
-  setGridEnabled: (enabled: boolean) => void;
-}
-
-const RightSidebar: React.FC<RightSidebarProps> = ({
+}> = ({
   shapes = [],
   connections = [],
   selectedShapes,
@@ -33,21 +21,22 @@ const RightSidebar: React.FC<RightSidebarProps> = ({
   setZoom,
   gridEnabled,
   setGridEnabled,
+  settings
 }) => {
   const toggleShapeVisibility = (shapeId: string) => {
-    setShapes((prevShapes) =>
+    setShapes((prevShapes: Shape[]) =>
       prevShapes.map((s) => (s.id === shapeId ? { ...s, visible: !s.visible } : s))
     );
   };
 
   const toggleShapeLock = (shapeId: string) => {
-    setShapes((prevShapes) =>
+    setShapes((prevShapes: Shape[]) =>
       prevShapes.map((s) => (s.id === shapeId ? { ...s, locked: !s.locked } : s))
     );
   };
 
   const removeConnection = (connectionId: string) => {
-    setConnections((prevConnections) => prevConnections.filter((c) => c.id !== connectionId));
+    setConnections((prevConnections: Connection[]) => prevConnections.filter((c) => c.id !== connectionId));
   };
 
   const selectShape = (shapeId: string) => {
@@ -89,7 +78,7 @@ const RightSidebar: React.FC<RightSidebarProps> = ({
                     <Button
                       variant="ghost"
                       size="icon"
-                      onClick={(e) => {
+                      onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                         e.stopPropagation();
                         toggleShapeVisibility(shape.id);
                       }}
@@ -99,7 +88,7 @@ const RightSidebar: React.FC<RightSidebarProps> = ({
                     <Button
                       variant="ghost"
                       size="icon"
-                      onClick={(e) => {
+                      onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                         e.stopPropagation();
                         toggleShapeLock(shape.id);
                       }}
@@ -125,7 +114,7 @@ const RightSidebar: React.FC<RightSidebarProps> = ({
                   <Button
                     variant="ghost"
                     size="icon"
-                    onClick={(e) => {
+                    onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
                       e.stopPropagation();
                       removeConnection(connection.id);
                     }}
@@ -149,7 +138,7 @@ const RightSidebar: React.FC<RightSidebarProps> = ({
               <input
                 type="range"
                 value={zoom}
-                onChange={(e) => setZoom(Number(e.target.value))}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setZoom(Number(e.target.value))}
                 min={10}
                 max={200}
                 step={10}
@@ -161,7 +150,7 @@ const RightSidebar: React.FC<RightSidebarProps> = ({
               <input
                 type="checkbox"
                 checked={gridEnabled}
-                onChange={(e) => setGridEnabled(e.target.checked)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setGridEnabled(e.target.checked)}
               />
             </div>
           </div>

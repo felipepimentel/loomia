@@ -1,13 +1,14 @@
 import React from 'react';
+import { PluginProps } from '@/core/types';
 import { Button } from '@/components/ui/button';
 import { MousePointer2, Square, Shapes, StickyNote, Type, ArrowUpRight } from 'lucide-react';
 
-interface LeftToolbarProps {
-  tool: string;
-  setTool: (tool: string) => void;
-}
-
-const LeftToolbar: React.FC<LeftToolbarProps> = ({ tool, setTool }) => (
+const LeftToolbar: React.FC<PluginProps> = ({
+  tool,
+  setTool,
+  settings,
+  // ... outros props que você precisa
+}) => (
   <aside className="w-16 bg-white border-r flex flex-col items-center py-4 space-y-4 shadow-md">
     <Button
       variant="ghost"
