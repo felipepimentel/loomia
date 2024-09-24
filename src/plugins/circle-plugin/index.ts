@@ -1,5 +1,5 @@
 // plugins/circle-plugin.ts
-import { Plugin } from "@/plugins/plugin-interface";
+import { Plugin } from "@/plugins/plugin-interface"; // Verifique se o caminho está correto
 
 export const circlePlugin: Plugin = {
   name: "circle",

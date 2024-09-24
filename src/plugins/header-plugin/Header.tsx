@@ -1,3 +1,4 @@
+import React from 'react'; // Adicionar importação do React
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';

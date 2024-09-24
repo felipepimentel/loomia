@@ -1,6 +1,5 @@
-import { loadUserConfig } from '@renderer/config/config-loader';
-import { eventBus } from '@events/event-bus';
-import { PluginConfig } from '@commons/plugin-registry/types';
+import { loadUserConfig } from '@/config/config-loader';
+import { eventBus } from '@/events/event-bus';
 
 interface LoadedPlugin {
   name: string;

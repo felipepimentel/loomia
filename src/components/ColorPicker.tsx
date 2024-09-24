@@ -59,3 +59,6 @@ export const ColorPicker: React.FC<ColorPickerProps> = ({ color, setColor }) => 
     </Popover>
   );
 };
+
+
+export default ColorPicker;

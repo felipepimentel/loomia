@@ -1,4 +1,4 @@
-import { definePluginMetadata } from '@/core/plugin-metadata';
+import { definePluginMetadata } from '@/core/plugin-metadata'; // Verifique se o caminho está correto
 
 export default definePluginMetadata({
   name: "canvasPlugin",

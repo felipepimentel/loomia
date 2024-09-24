@@ -11,6 +11,9 @@
         "prefix": ""
     },
     "aliases": {
+        "renderer": "@/renderer",
+        "core": "@/core",
+        "commons": "@/commons",
         "components": "@/components",
         "utils": "@/lib/utils"
     }

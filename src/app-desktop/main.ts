@@ -1,12 +1,58 @@
 import { app, BrowserWindow } from 'electron';
-import path from 'path';
+import * as path from 'path';
+import * as fs from 'fs';
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
-const createWindow = () => {
+interface PluginConfig {
+  active: boolean;
+  source: string;
+  pluginSettings?: Record<string, unknown>;
+}
+
+interface Plugin {
+  [key: string]: PluginConfig;
+}
+
+const loadPlugins = async () => {
+  const configPath = path.join(__dirname, '../../assets/user-config.default.json');
+  try {
+    const configData = JSON.parse(fs.readFileSync(configPath, 'utf-8')) as { plugins: Plugin[] };
+    const activePlugins = configData.plugins.filter(plugin =>
+      Object.values(plugin)[0].active
+    );
+
+    for (const plugin of activePlugins) {
+      const pluginName = Object.keys(plugin)[0];
+      const pluginConfig = plugin[pluginName];
+
+      if (pluginConfig.source === 'core') {
+        try {
+          const pluginModule = await import(`../../src/plugins/${pluginName}/index.ts`);
+          if (typeof pluginModule.default === 'function') {
+            pluginModule.default(pluginConfig.pluginSettings);
+          } else {
+            console.warn(`Plugin ${pluginName} does not export a default function.`);
+          }
+        } catch (error) {
+          console.error(`Error loading plugin ${pluginName}:`, error);
+        }
+      } else {
+        console.warn(`Plugin ${pluginName} is not a core plugin and will be ignored.`);
+      }
+    }
+  } catch (error) {
+    console.error('Error loading plugin configuration:', error);
+  }
+};
+
+const createWindow = async () => {
+  // Load plugins before creating the window
+  await loadPlugins();
+
   // Create the browser window.
   const mainWindow = new BrowserWindow({
     width: 800,
@@ -17,10 +63,10 @@ const createWindow = () => {
   });
 
   // and load the index.html of the app.
-  if (MAIN_WINDOW_VITE_DEV_SERVER_URL) {
-    mainWindow.loadURL(MAIN_WINDOW_VITE_DEV_SERVER_URL);
+  if (process.env.MAIN_WINDOW_VITE_DEV_SERVER_URL) {
+    mainWindow.loadURL(process.env.MAIN_WINDOW_VITE_DEV_SERVER_URL);
   } else {
-    mainWindow.loadFile(path.join(__dirname, `../renderer/${MAIN_WINDOW_VITE_NAME}/index.html`));
+    mainWindow.loadFile(path.join(__dirname, `../renderer/${process.env.MAIN_WINDOW_VITE_NAME}/index.html`));
   }
 
   // Open the DevTools.

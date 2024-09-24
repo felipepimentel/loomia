@@ -1,5 +1,5 @@
-import { loadUserConfig } from '@config/config-loader';
-import { eventBus } from '@events/event-bus';
+import { loadUserConfig } from '@/config/config-loader'; // Verifique se o caminho está correto
+import { eventBus } from '@/events/event-bus'; // Verifique se o caminho está correto
 
 interface Plugin {
   name: string;
