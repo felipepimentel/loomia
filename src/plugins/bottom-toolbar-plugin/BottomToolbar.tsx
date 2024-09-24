@@ -1,10 +1,9 @@
-// src/plugins/bottom-toolbar-plugin/BottomToolbar.tsx
 import React from 'react';
 import { PluginProps } from '@/core/types';
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
-import { Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight } from "lucide-react";
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Separator } from '@/components/ui/separator';
+import { Bold, Italic, Underline, AlignLeft, AlignCenter, AlignRight } from 'lucide-react';
 import ColorPicker from '@/components/ColorPicker';
 
 const BottomToolbar: React.FC<PluginProps> = ({
@@ -13,7 +12,6 @@ const BottomToolbar: React.FC<PluginProps> = ({
   fontSize,
   setFontSize,
   settings,
-  // ... outros props que você precisa
 }) => {
   return (
     <div className="flex items-center justify-between p-4 border-t bg-white">
@@ -25,7 +23,7 @@ const BottomToolbar: React.FC<PluginProps> = ({
             id="font-size"
             type="number"
             value={fontSize}
-            onChange={(e) => setFontSize(Number(e.target.value))}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFontSize(Number(e.target.value))}
             className="w-16"
           />
         </div>

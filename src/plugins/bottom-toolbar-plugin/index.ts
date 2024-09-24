@@ -1,2 +1,4 @@
 import BottomToolbarPlugin from './BottomToolbarPlugin';
-export default BottomToolbarPlugin;
+import metadata from './metadata';
+
+export { BottomToolbarPlugin as default, metadata };

@@ -1,7 +1,6 @@
-// src/plugins/bottom-toolbar-plugin/BottomToolbarPlugin.ts
 import React from 'react';
 import { AbstractPlugin, PluginMetadata, PluginProps } from '@/core/types';
-import BottomToolbarRender from './BottomToolbarRender';
+import BottomToolbar from './BottomToolbar';
 
 class BottomToolbarPlugin extends AbstractPlugin {
   Component: React.FC<PluginProps>;
@@ -12,7 +11,8 @@ class BottomToolbarPlugin extends AbstractPlugin {
   }
 
   private renderComponent(props: PluginProps): React.ReactElement {
-    return React.createElement(BottomToolbarRender, { ...props, settings: this.settings });
+    // Usar JSX corretamente dentro de arquivo .tsx
+    return <BottomToolbar {...props} settings={this.settings} />;
   }
 
   async initialize(settings: Record<string, any>): Promise<void> {
@@ -25,11 +25,4 @@ class BottomToolbarPlugin extends AbstractPlugin {
   }
 }
 
-const metadata: PluginMetadata = {
-  name: "Bottom Toolbar Plugin",
-  version: "1.0.0",
-  description: "Provides the bottom toolbar functionality",
-  author: "Your Name"
-};
-
-export default new BottomToolbarPlugin(metadata);
+export default BottomToolbarPlugin;

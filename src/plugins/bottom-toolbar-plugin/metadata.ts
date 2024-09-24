@@ -1,13 +1,14 @@
 import { PluginMetadata } from '@/core/types';
 
 const metadata: PluginMetadata = {
-  name: "Header Plugin",
+  name: "Bottom Toolbar Plugin",
   version: "1.0.0",
-  description: "Header component for the Loomia whiteboard",
+  description: "Provides the bottom toolbar functionality for the Loomia whiteboard",
   author: "Loomia Team",
   type: "utility",
   defaultSettings: {
-    placeholder: "Untitled Document"
+    fontSize: 16,
+    color: "#ffeb3b"
   }
 };
 

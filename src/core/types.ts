@@ -7,6 +7,8 @@ export interface PluginMetadata {
   description: string;
   author: string;
   dependencies?: string[];
+  type?: 'utility' | 'shape';
+  defaultSettings?: Record<string, any>;
 }
 
 export interface PluginConfig {
