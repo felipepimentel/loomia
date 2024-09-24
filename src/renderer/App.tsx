@@ -1,47 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { eventBus } from '@events/event-bus';
-import { loadActivePlugins } from '@plugin-manager/plugin-manager';
-import { PluginProvider } from '@plugin-manager/plugin-context';
+import React from 'react';
+import { EventBus } from '@events/event-bus';
 
-const App: React.FC = () => {
-  const [pluginsLoaded, setPluginsLoaded] = useState(false);
-
-  useEffect(() => {
-    const loadPlugins = async () => {
-      await loadActivePlugins();
-      setPluginsLoaded(true);
-    };
-    loadPlugins();
-  }, []);
-
-  useEffect(() => {
-    const handlePluginLoaded = ({ pluginName }: { pluginName: string }) => {
-      console.log(`Plugin loaded: ${pluginName}`);
-    };
-
-    const handlePluginUnloaded = ({ pluginName }: { pluginName: string }) => {
-      console.log(`Plugin unloaded: ${pluginName}`);
-    };
-
-    eventBus.on('plugin-loaded', handlePluginLoaded);
-    eventBus.on('plugin-unloaded', handlePluginUnloaded);
-
-    return () => {
-      eventBus.off('plugin-loaded', handlePluginLoaded);
-      eventBus.off('plugin-unloaded', handlePluginUnloaded);
-    };
-  }, []);
-
-  if (!pluginsLoaded) {
-    return <div>Loading plugins...</div>;
-  }
-
+const App = () => {
+  // Use EventBus here
   return (
     <div>
-      <h1>Main Application</h1>
-      <PluginProvider>
-        {/* Render loaded plugins here */}
-      </PluginProvider>
+      {/* Your app components */}
     </div>
   );
 };
