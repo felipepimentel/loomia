@@ -10,6 +10,17 @@
     "baseUrl": ".",
     "outDir": "dist",
     "moduleResolution": "node",
-    "resolveJsonModule": true
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "composite": true,
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react-jsx",
+    "include": ["src", "electron", "common", "tests"],
+    "paths": {
+			"@/*": ["./src/*"],
+      "@state/*": ["./src/state/*"]
+		}
   }
 }

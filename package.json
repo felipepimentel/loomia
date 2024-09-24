@@ -1,8 +1,8 @@
 {
-  "name": "my-new-app",
-  "productName": "my-new-app",
+  "name": "loomia",
+  "productName": "loomia",
   "version": "1.0.0",
-  "description": "My Electron application description",
+  "description": "Loomia Desktop",
   "main": ".vite/build/main.js",
   "scripts": {
     "start": "electron-forge start",
