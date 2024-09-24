@@ -1,8 +1,0 @@
-{
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "outDir": "../commons/dist",
-    "rootDir": "../commons/src"
-  },
-  "include": ["../commons/src/**/*"]
-}
