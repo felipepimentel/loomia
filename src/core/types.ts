@@ -142,3 +142,15 @@ export type ThemeType = 'light' | 'dark';
 
 // Language types
 export type LanguageType = 'en' | 'es' | 'fr' | 'de' | 'pt'; // Add more languages as needed
+
+
+// Defines the type of plugin, based on its general functionality
+// Generic type for plugin classification
+export enum PluginType {
+  Context = 'context',   // Plugins that define containers or layouts, such as interface areas
+  Action = 'action',     // Plugins that perform specific actions, like buttons
+  Shape = 'shape',       // Plugins that manipulate shapes or objects in the interface
+  Tool = 'tool',         // Interactive tool plugins
+  Utility = 'utility',   // Utility plugins, such as themes or global settings
+  Custom = 'custom'      // Plugins that define custom behaviors
+}

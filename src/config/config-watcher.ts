@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { reloadPlugins } from '@/plugin-manager/plugin-manager';
+import { reloadPlugins } from '@/core/plugin-manager';
 
 const configPath = path.join(__dirname, 'userConfig.json');
 

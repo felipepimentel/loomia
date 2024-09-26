@@ -1,0 +1,25 @@
+{
+  "name": "header-plugin",
+  "version": "1.0.0",
+  "description": "Plugin for displaying the header of the application.",
+  "author": "Your Name",
+  "type": "context",
+  "defaultSettings": {
+    "title": "Whiteboard",
+    "logo": "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
+    "components": [
+      {
+        "name": "save-button-plugin",
+        "position": "left"
+      },
+      {
+        "name": "undo-button-plugin",
+        "position": "left"
+      },
+      {
+        "name": "redo-button-plugin",
+        "position": "left"
+      }
+    ]
+  }
+}

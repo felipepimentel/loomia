@@ -9,9 +9,9 @@
       "**/CVS": true,
       "**/.DS_Store": true,
       "**/Thumbs.db": true,
-      "**/dist": true,
+      "**/dist": false,
       "**/node_modules": true,
-      "**/build": true,
-      "**/vite": true
+      "**/build": false,
+      "**/vite": false
     }
   }

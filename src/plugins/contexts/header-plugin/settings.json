@@ -1,0 +1,10 @@
+{
+  "title": "My Custom Header",
+  "logo": "https://example.com/my-logo.png",
+  "components": [
+    {
+      "name": "custom-button-plugin",
+      "position": "right"
+    }
+  ]
+}
